@@ -7,7 +7,7 @@ const app = express();
 
 const port = process.env.PORT || 3000;
 
-app.use(express.static(__dirname + '\\public'));
+app.use(express.static(__dirname + '/public'));
 
 app.use(
     formidable({
@@ -19,7 +19,7 @@ app.use(
 app.use('/api/images', router);
 
 app.get('/', (req, res) => {
-    res.sendFile(__dirname + '\\index.html');
+    res.sendFile(__dirname + '/index.html');
 });
 
 app.listen(port);
