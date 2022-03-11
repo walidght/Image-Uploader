@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1,
+  maximum-scale=5"
+        />
+
+        <link rel="icon" href="./assets/devchallenges.png" />
+
+        <link
+            rel="shortcut icon"
+            type="image/x-icon"
+            href="https://devchallenges.io/"
+        />
+
+        <link
+            href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap"
+            rel="stylesheet"
+        />
+
+        <link rel="stylesheet" href="./style.css" />
+        <script src="./script.js" defer></script>
+
+        <title>Devchallenges</title>
+    </head>
+    <body>
+        <div class="upload-screen-container">
+            <h1>Upload your image</h1>
+            <p class="subtitle">File should be Jpeg, Png,...</p>
+            <div class="drop-container">
+                <img src="./assets/image.svg" />
+                <p>Drag & Drop your image here</p>
+            </div>
+            <p class="or-text">Or</p>
+            <input id="file-upload" type="file" name="fileupload" hidden />
+            <button id="choose-file-button">Choose a file</button>
+        </div>
+
+        <div class="loading-container hidden">
+            <h1>Uploading...</h1>
+            <div class="loading">
+                <div class="loading-bar"></div>
+            </div>
+        </div>
+
+        <div class="result-container hidden">
+            <img src="./assets/check_circle_24dp.svg" class="icon" />
+            <h1>Uploaded Successfully</h1>
+            <img src="" class="image" id="image-result" />
+            <div class="link-container">
+                <p id="link-p"></p>
+                <button id="copy-link-button">Copy Link</button>
+            </div>
+        </div>
+    </body>
+</html>
