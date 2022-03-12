@@ -43,5 +43,11 @@ async function uploadFile(file) {
         _('.result-container ').classList.remove('hidden');
         _('#link-p').innerHTML = data.imageLink;
         _('#image-result').src = data.imageLink;
+        return;
+    }
+    _('.loading-container ').classList.add('hidden');
+    _('.upload-screen-container').classList.remove('hidden');
+    if (data.error) {
+        alert(data.error);
     }
 }

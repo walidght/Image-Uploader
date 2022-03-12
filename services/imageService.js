@@ -12,7 +12,26 @@ module.exports = class ImageService {
     }
     static async createNew({ path, name }) {
         const basePath = './images';
+        const supportedExtensions = [
+            'APNG',
+            'AVIF',
+            'GIF',
+            'JPEG',
+            'PNG',
+            'JPG',
+            'SVG',
+            'WEBP',
+        ];
         const extname = name.split('.')[1];
+
+        if (!supportedExtensions.includes(extname.toUpperCase())) {
+            try {
+                fs.unlinkSync(path);
+                return null;
+            } catch (err) {
+                console.error(err);
+            }
+        }
 
         const images = JsonManager.objFromPath('./images.json')?.images;
 
