@@ -5,34 +5,35 @@ const path = require('path');
 const config = require('config');
 
 module.exports = class ImageService {
-    static async getById(id) {
-        const images = JsonManager.objFromPath('./images/images.json');
+    static async get() {
+        const images = JsonManager.objFromPath('./images.json')?.images;
 
-        if (!images[id]) return null;
-
-        return path.resolve(`./images/${id}.${images[id].type}`);
+        return images;
     }
     static async createNew({ path, name }) {
         const basePath = './images';
         const extname = name.split('.')[1];
 
-        const images = JsonManager.objFromPath('./images/images.json');
+        const images = JsonManager.objFromPath('./images.json')?.images;
 
-        const newName = generateId(images);
+        const newId = generateId(extname);
+        if (newId === null) return null;
 
-        images[newName] = { type: extname };
+        const newName = `${newId}.${extname}`;
 
-        const newpath = `${basePath}/${newName}.${extname}`;
+        images.push(newName);
+
+        const newpath = `${basePath}/${newName}`;
 
         fs.renameSync(path, newpath);
 
         JsonManager.objToPath({
-            object: images,
-            path: './images/images.json',
+            object: { images },
+            path: './images.json',
         });
 
         const baseUrl = config.get('baseUrl');
 
-        return `${baseUrl}/api/images/${newName}`;
+        return `${baseUrl}/${newName}`;
     }
 };

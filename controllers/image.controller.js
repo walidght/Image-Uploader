@@ -2,13 +2,15 @@ const ImageService = require('../services/imageService');
 
 module.exports = class Image {
     static async get(req, res, next) {
-        const id = req.params.id;
-        ImageService.getById(id)
-            .then((imagePath) => {
-                res.sendFile(imagePath);
+        ImageService.get()
+            .then((images) => {
+                res.json({
+                    success: true,
+                    images,
+                });
             })
             .catch((err) =>
-                res.status(400).json({ error: 'Unable to get this image' })
+                res.status(400).json({ error: 'Unable to images' })
             );
     }
 
@@ -17,10 +19,16 @@ module.exports = class Image {
 
         ImageService.createNew(file)
             .then((imageLink) => {
-                res.json({
-                    success: true,
-                    imageLink,
-                });
+                res.json(
+                    imageLink
+                        ? {
+                              success: true,
+                              imageLink,
+                          }
+                        : {
+                              error: 'Unable to post this image',
+                          }
+                );
             })
             .catch((err) =>
                 res.status(400).json({ error: 'Unable to post this image' })

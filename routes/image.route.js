@@ -3,10 +3,10 @@ const router = express.Router();
 
 const Image = require('../controllers/image.controller');
 
-// @route GET api/images/:id
-// @description Get single image by id
+// @route GET api/images
+// @description Get all images
 // @access Public
-router.get('/:id', Image.get);
+router.get('/', Image.get);
 
 // @route POST api/images
 // @description add/save image
