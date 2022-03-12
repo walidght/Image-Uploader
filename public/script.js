@@ -26,7 +26,6 @@ _('.drop-container').addEventListener('drop', (event) => {
 });
 
 _('#copy-link-button').addEventListener('click', () => {
-    console.log('clicked 2');
     navigator.clipboard.writeText(_('#image-result').src);
     _('#copy-link-button').innerHTML = 'Copied!';
 });

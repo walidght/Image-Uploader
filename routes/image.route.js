@@ -8,7 +8,7 @@ const Image = require('../controllers/image.controller');
 // @access Public
 router.get('/:id', Image.get);
 
-// @route GET api/images
+// @route POST api/images
 // @description add/save image
 // @access Public
 router.post('/', Image.add);
